@@ -5,3 +5,4 @@
 3. [mfdb](mfdb/)
 4. [gadget-course](gadget-course/)
 5. [gadget3](gadget3/)
+6. [gadgetplots](https://gadget-framework.github.io/gadgetplots/)

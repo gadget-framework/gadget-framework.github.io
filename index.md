@@ -11,3 +11,7 @@
 2. [rgadget](rgadget/): Rgadget is a set of useful utilities for gadget(2)
 3. [gadget-course](gadget-course/): A course on building models using the Gadget(2) framework
 4. [gadget-models](https://github.com/gadget-framework/gadget-models): Example models built using the Gadget framework
+
+## Publications
+
+1. [Gadget3: An Evolution of the Gadget Modelling Framework](publications/2024-09-ices-asc-gadget3-evolution-of-gadget-modelling-framework.pdf) (poster presented at ICES 2024 ASC)

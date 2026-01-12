@@ -1,6 +1,6 @@
 # Gadget Framework
 
-1. [gadget3](gadget3/): Latest iteration of the gadget modelling framework [development version documentation](gadget3/master)
+1. [gadget3](gadget3/): Latest iteration of the gadget modelling framework [development version documentation](gadget3-master/)
 2. [gadget-utils](https://github.com/gadget-framework/gadgetutils): A set of utilities for developing and maintaining gadget3 models.
 3. [gadgetplots](https://gadget-framework.github.io/gadgetplots/): Plot gadget3 model output using ggplot2
 4. [mfdb](mfdb/): Data management for fisheries model creation

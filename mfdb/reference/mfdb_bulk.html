@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mfdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">7.3-99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">7.4-0-999</span>
       </span>
     </div>
 
@@ -104,71 +104,71 @@ content of <code>in_location</code>, a directory or tarball.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Copy data from one database to another, note they don't have to be the same type</span></span></span>
 <span class="r-in"><span><span class="va">mdb_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="mfdb.html">mfdb</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">'.sqlite'</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:08.68188 INFO:mfdb:Creating schema from scratch</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:08.770192 INFO:mfdb:Taxonomy market_category no updates to make</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:08.876586 INFO:mfdb:Schema up-to-date</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:50.35546 INFO:mfdb:Creating schema from scratch</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:50.444058 INFO:mfdb:Taxonomy market_category no updates to make</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:50.530428 INFO:mfdb:Schema up-to-date</span>
 <span class="r-in"><span><span class="va">mdb_in</span> <span class="op">&lt;-</span> <span class="fu"><a href="mfdb.html">mfdb</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">'.duckdb'</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:08.935562 INFO:mfdb:Creating schema from scratch</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.361754 INFO:mfdb:Taxonomy market_category no updates to make</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.927677 INFO:mfdb:Schema up-to-date</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:50.613266 INFO:mfdb:Creating schema from scratch</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.040062 INFO:mfdb:Taxonomy market_category no updates to make</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.593319 INFO:mfdb:Schema up-to-date</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">dump_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext<span class="op">=</span><span class="st">'.tar.gz'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">mfdb_cs_dump</span><span class="op">(</span><span class="va">mdb_out</span>, <span class="va">dump_path</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.92982 INFO:mfdb:Dumping table institute</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.931411 INFO:mfdb:Dumping table bait_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.932661 INFO:mfdb:Dumping table net_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.933886 INFO:mfdb:Dumping table gear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.935593 INFO:mfdb:Dumping table vessel_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.936937 INFO:mfdb:Dumping table vessel_owner</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.938112 INFO:mfdb:Dumping table market_category</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.93927 INFO:mfdb:Dumping table sex</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.940552 INFO:mfdb:Dumping table maturity_stage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.941848 INFO:mfdb:Dumping table species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.946634 INFO:mfdb:Dumping table areacell</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.94786 INFO:mfdb:Dumping table stomach_state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.949136 INFO:mfdb:Dumping table digestion_stage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.950407 INFO:mfdb:Dumping table sampling_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.951573 INFO:mfdb:Dumping table population</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.952751 INFO:mfdb:Dumping table data_source</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.953927 INFO:mfdb:Dumping table index_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.95518 INFO:mfdb:Dumping table port</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.956339 INFO:mfdb:Dumping table trip</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.95751 INFO:mfdb:Dumping table tow</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.958793 INFO:mfdb:Dumping table vessel</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.959984 INFO:mfdb:Dumping table case_study</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.961312 INFO:mfdb:Dumping table survey_index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.962519 INFO:mfdb:Dumping table division</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.963681 INFO:mfdb:Dumping table sample</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.96499 INFO:mfdb:Dumping table predator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:09.966213 INFO:mfdb:Dumping table prey</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.595392 INFO:mfdb:Dumping table institute</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.596981 INFO:mfdb:Dumping table bait_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.59824 INFO:mfdb:Dumping table net_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.599438 INFO:mfdb:Dumping table gear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.601129 INFO:mfdb:Dumping table vessel_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.602465 INFO:mfdb:Dumping table vessel_owner</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.603636 INFO:mfdb:Dumping table market_category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.604813 INFO:mfdb:Dumping table sex</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.606093 INFO:mfdb:Dumping table maturity_stage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.607415 INFO:mfdb:Dumping table species</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.612131 INFO:mfdb:Dumping table areacell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.613386 INFO:mfdb:Dumping table stomach_state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.614707 INFO:mfdb:Dumping table digestion_stage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.615992 INFO:mfdb:Dumping table sampling_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.617204 INFO:mfdb:Dumping table population</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.618382 INFO:mfdb:Dumping table data_source</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.61957 INFO:mfdb:Dumping table index_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.620875 INFO:mfdb:Dumping table port</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.622096 INFO:mfdb:Dumping table trip</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.623361 INFO:mfdb:Dumping table tow</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.624619 INFO:mfdb:Dumping table vessel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.625822 INFO:mfdb:Dumping table case_study</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.627128 INFO:mfdb:Dumping table survey_index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.628346 INFO:mfdb:Dumping table division</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.629504 INFO:mfdb:Dumping table sample</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.630798 INFO:mfdb:Dumping table predator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.632057 INFO:mfdb:Dumping table prey</span>
 <span class="r-in"><span><span class="fu">mfdb_cs_restore</span><span class="op">(</span><span class="va">mdb_in</span>, <span class="va">dump_path</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.080562 INFO:mfdb:Restoring table institute</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.260775 INFO:mfdb:Restoring table bait_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.262416 INFO:mfdb:Restoring table net_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.263269 INFO:mfdb:Restoring table gear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.432401 INFO:mfdb:Restoring table vessel_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.601172 INFO:mfdb:Restoring table vessel_owner</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.602517 INFO:mfdb:Restoring table market_category</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.603355 INFO:mfdb:Restoring table sex</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.770604 INFO:mfdb:Restoring table maturity_stage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:10.93926 INFO:mfdb:Restoring table species</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.110844 INFO:mfdb:Restoring table areacell</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.112114 INFO:mfdb:Restoring table stomach_state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.282916 INFO:mfdb:Restoring table digestion_stage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.451135 INFO:mfdb:Restoring table sampling_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.452396 INFO:mfdb:Restoring table population</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.45323 INFO:mfdb:Restoring table data_source</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.454035 INFO:mfdb:Restoring table index_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.624203 INFO:mfdb:Restoring table port</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.625588 INFO:mfdb:Restoring table trip</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.626506 INFO:mfdb:Restoring table tow</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.627495 INFO:mfdb:Restoring table vessel</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.628331 INFO:mfdb:Restoring table case_study</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.79721 INFO:mfdb:Restoring table survey_index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.798466 INFO:mfdb:Restoring table division</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.799287 INFO:mfdb:Restoring table sample</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.800452 INFO:mfdb:Restoring table predator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-22 15:11:11.801435 INFO:mfdb:Restoring table prey</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.743288 INFO:mfdb:Restoring table institute</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.922667 INFO:mfdb:Restoring table bait_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.924109 INFO:mfdb:Restoring table net_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:51.924958 INFO:mfdb:Restoring table gear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.093257 INFO:mfdb:Restoring table vessel_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.269063 INFO:mfdb:Restoring table vessel_owner</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.2705 INFO:mfdb:Restoring table market_category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.271383 INFO:mfdb:Restoring table sex</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.442134 INFO:mfdb:Restoring table maturity_stage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.611339 INFO:mfdb:Restoring table species</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.784576 INFO:mfdb:Restoring table areacell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.785811 INFO:mfdb:Restoring table stomach_state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:52.95279 INFO:mfdb:Restoring table digestion_stage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.126769 INFO:mfdb:Restoring table sampling_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.128094 INFO:mfdb:Restoring table population</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.128949 INFO:mfdb:Restoring table data_source</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.129743 INFO:mfdb:Restoring table index_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.305921 INFO:mfdb:Restoring table port</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.307448 INFO:mfdb:Restoring table trip</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.308406 INFO:mfdb:Restoring table tow</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.309388 INFO:mfdb:Restoring table vessel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.31023 INFO:mfdb:Restoring table case_study</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.485298 INFO:mfdb:Restoring table survey_index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.486635 INFO:mfdb:Restoring table division</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.487468 INFO:mfdb:Restoring table sample</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.488653 INFO:mfdb:Restoring table predator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2026-01-24 11:29:53.489643 INFO:mfdb:Restoring table prey</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="mfdb.html">mfdb_disconnect</a></span><span class="op">(</span><span class="va">mdb_in</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="mfdb.html">mfdb_disconnect</a></span><span class="op">(</span><span class="va">mdb_out</span><span class="op">)</span></span></span>

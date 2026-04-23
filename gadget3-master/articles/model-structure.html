@@ -141,7 +141,7 @@ make some:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Class 'formula'  language ~cows + pigs</span></span>
-<span><span class="co">##   ..- attr(*, ".Environment")=&lt;environment: 0x5621ba985ea0&gt;</span></span></code></pre>
+<span><span class="co">##   ..- attr(*, ".Environment")=&lt;environment: 0x5568435d6170&gt;</span></span></code></pre>
 <p>We can look into this environment, and see the values that got set
 for cows &amp; pigs:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -194,8 +194,8 @@ an R function:</p>
 <span><span class="co">##         cows + pigs</span></span>
 <span><span class="co">##     }</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5621b6036a40&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x5621bbfa6ec0&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x55683ebc11d0&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x556844bfcc20&gt;</span></span></code></pre>
 <p>…or a TMB template:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run_tmb.html">g3_to_tmb</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -265,14 +265,14 @@ reached. For example:</p>
 <span><span class="co">##     cur_step_size &lt;- step_lengths[[cur_step]]/12</span></span>
 <span><span class="co">##     cur_step_final &lt;- cur_step == step_count</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;environment: 0x5621b9690048&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x556842332058&gt;</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $`001`</span></span>
 <span><span class="co">## ~{</span></span>
 <span><span class="co">##     if (cur_time &gt; total_steps) </span></span>
 <span><span class="co">##         return(nll)</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;environment: 0x5621b8e3b1e8&gt;</span></span></code></pre>
+<span><span class="co">## &lt;environment: 0x556841ab25e0&gt;</span></span></code></pre>
 <p>Like in the example above, the definitions are part of the formula’s
 environment, and if we compile it we see our years ending up in the
 code.</p>
@@ -344,8 +344,8 @@ code.</p>
 <span><span class="co">##         }</span></span>
 <span><span class="co">##     }</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5621bc2d6688&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x5621b92f0d98&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x556844fb0628&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x556841fb6890&gt;</span></span></code></pre>
 <p>In this case our years have been hard-coded, but their definitions
 could themselves be formula and the end result will be added to the
 model. For example:</p>
@@ -417,8 +417,8 @@ model. For example:</p>
 <span><span class="co">##         }</span></span>
 <span><span class="co">##     }</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5621ba39a1f8&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x5621b6f02d48&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x5568430cff28&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x55683fa201f8&gt;</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="stocks">Stocks<a class="anchor" aria-label="anchor" href="#stocks"></a>
@@ -536,7 +536,7 @@ example:</p>
 <span><span class="co">##     dif_pmax &lt;- function(a, b, scale) {</span></span>
 <span><span class="co">##         logspace_add &lt;- function(a, b) pmax(a, b) + log1p(exp(pmin(a, </span></span>
 <span><span class="co">##             b) - pmax(a, b)))</span></span>
-<span><span class="co">##         b &lt;- as.vector(b)</span></span>
+<span><span class="co">##         dim(b) &lt;- NULL</span></span>
 <span><span class="co">##         logspace_add(a * scale, b * scale)/scale</span></span>
 <span><span class="co">##     }</span></span>
 <span><span class="co">##     avoid_zero &lt;- function(a) {</span></span>
@@ -585,8 +585,10 @@ example:</p>
 <span><span class="co">##     g3a_grow_apply &lt;- function(growth.matrix, wgt.matrix, input_num, </span></span>
 <span><span class="co">##         input_wgt) {</span></span>
 <span><span class="co">##         na &lt;- dim(growth.matrix)[[1]]</span></span>
-<span><span class="co">##         growth.matrix &lt;- growth.matrix * as.vector(input_num)</span></span>
-<span><span class="co">##         wgt.matrix &lt;- growth.matrix * (wgt.matrix + as.vector(input_wgt))</span></span>
+<span><span class="co">##         dim(input_num) &lt;- NULL</span></span>
+<span><span class="co">##         dim(input_wgt) &lt;- NULL</span></span>
+<span><span class="co">##         growth.matrix &lt;- growth.matrix * input_num</span></span>
+<span><span class="co">##         wgt.matrix &lt;- growth.matrix * (wgt.matrix + input_wgt)</span></span>
 <span><span class="co">##         growth.matrix.sum &lt;- colSums(growth.matrix)</span></span>
 <span><span class="co">##         return(array(c(growth.matrix.sum, colSums(wgt.matrix)/avoid_zero(growth.matrix.sum)), </span></span>
 <span><span class="co">##             dim = c(na, 2)))</span></span>
@@ -658,8 +660,8 @@ example:</p>
 <span><span class="co">##         }</span></span>
 <span><span class="co">##     }</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5621bb3824a0&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x5621b6cab270&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x5568440915b8&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x55683f7f8180&gt;</span></span></code></pre>
 <p>…you can see our provided formula have been used to calculate
 <code>ling_imm__growth_l</code> and <code>ling_imm__growth_w</code>, and
 <code>age</code> and <code>area</code> are available to us thanks to the
@@ -714,7 +716,7 @@ definitions into the code where appropriate. For example:</p>
 <span><span class="co">##     dif_pmax &lt;- function(a, b, scale) {</span></span>
 <span><span class="co">##         logspace_add &lt;- function(a, b) pmax(a, b) + log1p(exp(pmin(a, </span></span>
 <span><span class="co">##             b) - pmax(a, b)))</span></span>
-<span><span class="co">##         b &lt;- as.vector(b)</span></span>
+<span><span class="co">##         dim(b) &lt;- NULL</span></span>
 <span><span class="co">##         logspace_add(a * scale, b * scale)/scale</span></span>
 <span><span class="co">##     }</span></span>
 <span><span class="co">##     avoid_zero &lt;- function(a) {</span></span>
@@ -763,8 +765,10 @@ definitions into the code where appropriate. For example:</p>
 <span><span class="co">##     g3a_grow_apply &lt;- function(growth.matrix, wgt.matrix, input_num, </span></span>
 <span><span class="co">##         input_wgt) {</span></span>
 <span><span class="co">##         na &lt;- dim(growth.matrix)[[1]]</span></span>
-<span><span class="co">##         growth.matrix &lt;- growth.matrix * as.vector(input_num)</span></span>
-<span><span class="co">##         wgt.matrix &lt;- growth.matrix * (wgt.matrix + as.vector(input_wgt))</span></span>
+<span><span class="co">##         dim(input_num) &lt;- NULL</span></span>
+<span><span class="co">##         dim(input_wgt) &lt;- NULL</span></span>
+<span><span class="co">##         growth.matrix &lt;- growth.matrix * input_num</span></span>
+<span><span class="co">##         wgt.matrix &lt;- growth.matrix * (wgt.matrix + input_wgt)</span></span>
 <span><span class="co">##         growth.matrix.sum &lt;- colSums(growth.matrix)</span></span>
 <span><span class="co">##         return(array(c(growth.matrix.sum, colSums(wgt.matrix)/avoid_zero(growth.matrix.sum)), </span></span>
 <span><span class="co">##             dim = c(na, 2)))</span></span>
@@ -841,8 +845,8 @@ definitions into the code where appropriate. For example:</p>
 <span><span class="co">##         }</span></span>
 <span><span class="co">##     }</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5621b5f5a380&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x5621b93b2320&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x55683eae0800&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x556842051ba8&gt;</span></span></code></pre>
 <p>Note that <code>custom_delta_l</code> is recalculated every loop,
 since it uses <code>area</code>, whereas <code>custom_delta_w</code> is
 calculated once for the step.</p>

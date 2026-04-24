@@ -119,34 +119,22 @@ resolution, and can be aggregated before import according to the needs.
 Note that an account has to be created to download data from Copernicus
 Marine Service using the script below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">RCMEMS</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"CFtime"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="co"># Needed to parse dates</span></span>
 <span></span>
-<span><span class="co"># point to the data product</span></span>
-<span><span class="va">cfg</span> <span class="op">&lt;-</span> <span class="fu">CMEMS.config</span><span class="op">(</span>motu<span class="op">=</span><span class="st">"http://my.cmems-du.eu/motu-web/Motu"</span>,</span>
-<span>                         service.id <span class="op">=</span> <span class="st">"BALTICSEA_REANALYSIS_PHY_003_011-TDS"</span>,</span>
-<span>                         product.id <span class="op">=</span> <span class="st">"dataset-reanalysis-nemo-monthlymeans"</span>,</span>
-<span>                         variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bottomT"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span></span>
+<span>  CopernicusMarine_uid <span class="op">=</span> <span class="st">"..."</span>,</span>
+<span>  CopernicusMarine_pwd <span class="op">=</span> <span class="st">"..."</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># add user and psw</span></span>
-<span><span class="va">CMEMS.config.usr</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"username"</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/scan.html" class="external-link">scan</a></span><span class="op">(</span><span class="st">""</span>, what<span class="op">=</span><span class="st">"character"</span>, nmax<span class="op">=</span><span class="fl">1</span>, quiet<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span><span class="va">CMEMS.config.pwd</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"password"</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/scan.html" class="external-link">scan</a></span><span class="op">(</span><span class="st">""</span>, what<span class="op">=</span><span class="st">"character"</span>, nmax<span class="op">=</span><span class="fl">1</span>, quiet<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span><span class="va">cfg</span><span class="op">@</span><span class="va">user</span> <span class="op">&lt;-</span> <span class="fu">CMEMS.config.usr</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">cfg</span><span class="op">@</span><span class="va">pwd</span>  <span class="op">&lt;-</span> <span class="fu">CMEMS.config.pwd</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># select year and download</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2018</span> <span class="co"># year of interest</span></span>
-<span><span class="fu">CMEMS.download</span><span class="op">(</span><span class="va">cfg</span>,</span>
-<span>                   ROI <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">17</span>,<span class="fl">20</span>,<span class="fl">56</span>,<span class="fl">58.5</span><span class="op">)</span>,</span>
-<span>                   date.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ISOdatetime.html" class="external-link">ISOdate</a></span><span class="op">(</span><span class="va">y</span>,<span class="fl">01</span>,<span class="fl">01</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/ISOdatetime.html" class="external-link">ISOdate</a></span><span class="op">(</span><span class="va">y</span>,<span class="fl">12</span>,<span class="fl">31</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                   depth.range<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">500</span><span class="op">)</span>, <span class="co"># max depth Baltic 459 m</span></span>
-<span>                   out.path<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"data_provided/CMEMS_BAL_PHY_reanalysis_monthlymeans_"</span>,<span class="va">y</span>,<span class="st">".nc"</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,</span>
-<span>               debug<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">CopernicusMarine</span><span class="fu">::</span><span class="fu">cms_download_subset</span><span class="op">(</span></span>
+<span>  product       <span class="op">=</span> <span class="st">"BALTICSEA_MULTIYEAR_PHY_003_011"</span>,</span>
+<span>  layer         <span class="op">=</span> <span class="st">"cmems_mod_bal_phy_my_P1M-m"</span>,</span>
+<span>  variable      <span class="op">=</span> <span class="st">"bottomT"</span>,</span>
+<span>  region        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fl">54</span>, <span class="fl">30</span>, <span class="fl">58.5</span><span class="op">)</span>,     <span class="co"># c(lon_min, lat_min, lon_max, lat_max)</span></span>
+<span>  timerange     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"-01-01"</span>, <span class="st">"-12-31"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  verticalrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="download-ices-rectangles">Download ICES rectangles<a class="anchor" aria-label="anchor" href="#download-ices-rectangles"></a>
@@ -161,55 +149,49 @@ Marine Service using the script below.</p>
 <h2 id="aggregate-hydrographic-data-by-ices-rectangles">Aggregate hydrographic data by ICES rectangles<a class="anchor" aria-label="anchor" href="#aggregate-hydrographic-data-by-ices-rectangles"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/" class="external-link">rnaturalearth</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/lwgeom/" class="external-link">lwgeom</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># load ICES rect</span></span>
+<span><span class="va">ices.rect</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu">st_read</span><span class="op">(</span><span class="st">"data_provided/ices_rect/StatRec_map_Areas_Full_20170124.dbf"</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2018</span> <span class="co"># year of interest</span></span>
+<span><span class="co"># Aggregate bottomT by ICES rect</span></span>
+<span><span class="va">ar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">ices.rect</span><span class="op">$</span><span class="va">geometry</span>, FUN <span class="op">=</span> <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">bottomT</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">ar</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ICESNAME <span class="op">=</span> <span class="va">ices.rect</span><span class="op">$</span><span class="va">ICESNAME</span>, month <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span></span>
+<span><span class="va">hydroVar</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">as.data.frame.table</a></span><span class="op">(</span><span class="va">ar</span>, responseName <span class="op">=</span> <span class="st">"sob"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">sob</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    year <span class="op">=</span> <span class="va">y</span>,</span>
+<span>    month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span></span>
+<span>    rect <span class="op">=</span> <span class="va">ICESNAME</span>,</span>
+<span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="co"># load ICES rect</span></span>
-<span><span class="va">ices.rect</span> <span class="op">&lt;-</span> <span class="fu">st_read</span><span class="op">(</span><span class="st">"data_provided/ices_rect/StatRec_map_Areas_Full_20170124.dbf"</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">hydroVar</span>, file <span class="op">=</span> <span class="st">'hydroVar.txt'</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="combine-ices-rectangles-with-rnaturalearthne_countries-to-get-sea-surface-area">Combine ICES rectangles with rnaturalearth::ne_countries() to get
+sea surface area<a class="anchor" aria-label="anchor" href="#combine-ices-rectangles-with-rnaturalearthne_countries-to-get-sea-surface-area"></a>
+</h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ices.rect</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu">st_read</span><span class="op">(</span><span class="st">"data_provided/ices_rect/StatRec_map_Areas_Full_20170124.dbf"</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># load bottom temperature (bottomT)</span></span>
-<span><span class="va">rst</span> <span class="op">&lt;-</span> <span class="fu">brick</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"data_provided/CMEMS_BAL_PHY_reanalysis_monthlymeans_"</span>,<span class="va">y</span>,<span class="st">".nc"</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, varname<span class="op">=</span><span class="st">"bottomT"</span>, lvar<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">ices.rect.sea</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">ices.rect</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ICESNAME</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">hydroVar</span><span class="op">$</span><span class="va">rect</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu">st_difference</span><span class="op">(</span></span>
+<span>    <span class="fu">rnaturalearth</span><span class="fu">::</span><span class="fu">ne_countries</span><span class="op">(</span>returnclass <span class="op">=</span> <span class="st">"sf"</span>, continent<span class="op">=</span><span class="st">"Europe"</span>, scale<span class="op">=</span><span class="st">"large"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">sf</span><span class="fu">::</span><span class="fu">st_union</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    areaSea_km2 <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu">st_area</span><span class="op">(</span><span class="va">geometry</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">units</span><span class="fu">::</span><span class="fu">set_units</span><span class="op">(</span><span class="va">km</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span></span>
+<span>    rect <span class="op">=</span> <span class="va">ICESNAME</span>,</span>
+<span>    areaSea_km2 <span class="op">=</span> <span class="va">areaSea_km2</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu">st_drop_geometry</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># calculate mean sob (raster) by ices rect (polygons)</span></span>
-<span><span class="va">ov</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu">extract</span><span class="op">(</span><span class="va">rst</span>,<span class="va">ices.rect</span>, fun<span class="op">=</span><span class="va">mean</span>, na.rm<span class="op">=</span><span class="cn">T</span>, df<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
-<span><span class="va">hydroVar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ID<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ices.rect</span><span class="op">$</span><span class="va">ICESNAME</span><span class="op">)</span>,</span>
-<span>                       rect<span class="op">=</span><span class="va">ices.rect</span><span class="op">$</span><span class="va">ICESNAME</span>,</span>
-<span>                       areaFull_km2<span class="op">=</span><span class="va">ices.rect</span><span class="op">$</span><span class="va">AREA_KM2</span>,</span>
-<span>                       year<span class="op">=</span><span class="va">y</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">right_join</span><span class="op">(</span><span class="va">ov</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">ID</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">gather</span><span class="op">(</span><span class="st">"month"</span>,<span class="st">"sob"</span>,<span class="fl">4</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">mutate</span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">month</span>,<span class="fl">7</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">sob</span><span class="op">)</span><span class="op">)</span> <span class="co"># NA are on land or outside the raster area</span></span>
-<span></span>
-<span><span class="va">land</span> <span class="op">&lt;-</span> <span class="fu">rnaturalearth</span><span class="fu">::</span><span class="fu">ne_countries</span><span class="op">(</span>returnclass <span class="op">=</span> <span class="st">"sf"</span>, continent<span class="op">=</span><span class="st">"Europe"</span>, scale<span class="op">=</span><span class="st">"large"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">st_union</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">ices.rect.sea</span> <span class="op">&lt;-</span> <span class="va">ices.rect</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ICESNAME</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">hydroVar</span><span class="op">$</span><span class="va">rect</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>         <span class="fu">st_difference</span><span class="op">(</span><span class="va">land</span><span class="op">)</span></span>
-<span><span class="va">ices.rect.sea</span><span class="op">$</span><span class="va">areaSea_km2</span> <span class="op">&lt;-</span> <span class="fu">st_area</span><span class="op">(</span><span class="va">ices.rect.sea</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">units</span><span class="fu">::</span><span class="fu">set_units</span><span class="op">(</span><span class="va">km</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">hydroVar</span> <span class="op">&lt;-</span> <span class="va">ices.rect.sea</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">rename</span><span class="op">(</span>rect<span class="op">=</span><span class="va">ICESNAME</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">select</span><span class="op">(</span><span class="va">rect</span>, <span class="va">areaSea_km2</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">right_join</span><span class="op">(</span><span class="va">hydroVar</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">hydroVar</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_sf</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_sf</span><span class="op">(</span>data<span class="op">=</span><span class="fu">st_geometry</span><span class="op">(</span><span class="va">ices.rect.sea</span><span class="op">)</span>, fill<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">xlim</span><span class="op">(</span><span class="fu">xmin</span><span class="op">(</span><span class="fu">extent</span><span class="op">(</span><span class="va">hydroVar</span><span class="op">)</span><span class="op">)</span>, <span class="fu">xmax</span><span class="op">(</span><span class="fu">extent</span><span class="op">(</span><span class="va">hydroVar</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">ylim</span><span class="op">(</span><span class="fu">ymin</span><span class="op">(</span><span class="fu">extent</span><span class="op">(</span><span class="va">hydroVar</span><span class="op">)</span><span class="op">)</span>, <span class="fu">ymax</span><span class="op">(</span><span class="fu">extent</span><span class="op">(</span><span class="va">hydroVar</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span>  </span>
-<span></span>
-<span><span class="co"># Write the results to temporary files so we can read them back in the next step</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu">st_drop_geometry</span><span class="op">(</span><span class="va">ices.rect.sea</span><span class="op">)</span>, file <span class="op">=</span> <span class="st">'ices.rect.sea.txt'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu">st_drop_geometry</span><span class="op">(</span><span class="va">hydroVar</span><span class="op">)</span>, file <span class="op">=</span> <span class="st">'hydroVar.txt'</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu">st_drop_geometry</span><span class="op">(</span><span class="va">ices.rect.sea</span><span class="op">)</span>, file <span class="op">=</span> <span class="st">'ices.rect.sea.txt'</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="import-bottom-temperature-into-mfdb">Import bottom temperature into mfdb<a class="anchor" aria-label="anchor" href="#import-bottom-temperature-into-mfdb"></a>
@@ -217,15 +199,16 @@ Marine Service using the script below.</p>
 <p>Import ICES rectangles and import the hydrographic data as a survey
 index. Then we can retrieve the hydrographic data as a weighted mean
 using ICES rectangle as a weighting variable:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mfdb.html">mfdb</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">'.duckdb'</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ices.rect.sea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">'ices.rect.sea.txt'</span><span class="op">)</span></span>
-<span><span class="va">hydroVar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">'hydroVar.txt'</span><span class="op">)</span></span>
+<span><span class="va">hydroVar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">'hydroVar.txt'</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span><span class="op">(</span><span class="va">ices.rect.sea</span>, by <span class="op">=</span> <span class="st">"rect"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># import ICES rectangles</span></span>
 <span><span class="fu"><a href="../reference/mfdb_import_taxonomy.html">mfdb_import_area</a></span><span class="op">(</span><span class="va">mdb</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ices.rect.sea</span><span class="op">$</span><span class="va">ICESNAME</span><span class="op">)</span>,</span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ices.rect.sea</span><span class="op">$</span><span class="va">rect</span><span class="op">)</span>,</span>
 <span>    size <span class="op">=</span> <span class="va">ices.rect.sea</span><span class="op">$</span><span class="va">areaSea_km2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># import area size as index for later use</span></span>
@@ -261,15 +244,15 @@ using ICES rectangle as a weighting variable:</p>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'year'</span>, <span class="st">'step'</span>, <span class="st">'area'</span>, <span class="st">'mean'</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">dat</span></span></code></pre></div>
 <pre><code><span><span class="co">##   year step area     mean</span></span>
-<span><span class="co">## 1 2018    1   a1 5.131353</span></span>
-<span><span class="co">## 2 2018    1   a2 5.286023</span></span>
-<span><span class="co">## 3 2018    2   a1 5.772875</span></span>
-<span><span class="co">## 4 2018    2   a2 5.787779</span></span>
-<span><span class="co">## 5 2018    3   a1 7.259383</span></span>
-<span><span class="co">## 6 2018    3   a2 6.609905</span></span>
-<span><span class="co">## 7 2018    4   a1 6.144196</span></span>
-<span><span class="co">## 8 2018    4   a2 6.020029</span></span></code></pre>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<span><span class="co">## 1 2018    1   a1 5.065878</span></span>
+<span><span class="co">## 2 2018    1   a2 5.277945</span></span>
+<span><span class="co">## 3 2018    2   a1 5.535443</span></span>
+<span><span class="co">## 4 2018    2   a2 5.409325</span></span>
+<span><span class="co">## 5 2018    3   a1 6.778031</span></span>
+<span><span class="co">## 6 2018    3   a2 6.149436</span></span>
+<span><span class="co">## 7 2018    4   a1 6.090254</span></span>
+<span><span class="co">## 8 2018    4   a2 5.768832</span></span></code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/mfdb.html">mfdb_disconnect</a></span><span class="op">(</span><span class="va">mdb</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>unittest.output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 </div>

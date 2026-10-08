@@ -92,7 +92,9 @@
 <span>            prepend_extra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">param_name</span><span class="op">)</span> <span class="op">)</span>,</span>
 <span>        lstddev_f <span class="op">=</span> <span class="fu"><a href="params.html">g3_parameterized</a></span><span class="op">(</span><span class="st">"proj.dlnorm.stddev"</span>,</span>
 <span>            value <span class="op">=</span> <span class="fl">0.2</span>, optimise <span class="op">=</span> <span class="cn">FALSE</span>, type <span class="op">=</span> <span class="st">"LOG"</span>,</span>
-<span>            prepend_extra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">param_name</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span></span>
+<span>            prepend_extra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">param_name</span><span class="op">)</span> <span class="op">)</span>,</span>
+<span>        from_year_f <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>        to_year_f <span class="op">=</span> <span class="cn">NULL</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu">g3_param_project_dnorm</span><span class="op">(</span></span>
 <span>        mean_f <span class="op">=</span> <span class="fu"><a href="params.html">g3_parameterized</a></span><span class="op">(</span><span class="st">"proj.dnorm.mean"</span>,</span>
@@ -100,7 +102,9 @@
 <span>            prepend_extra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">param_name</span><span class="op">)</span> <span class="op">)</span>,</span>
 <span>        stddev_f <span class="op">=</span> <span class="fu"><a href="params.html">g3_parameterized</a></span><span class="op">(</span><span class="st">"proj.dnorm.stddev"</span>,</span>
 <span>            value <span class="op">=</span> <span class="fl">1</span>, optimise <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>            prepend_extra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">param_name</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span></span>
+<span>            prepend_extra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">param_name</span><span class="op">)</span> <span class="op">)</span>,</span>
+<span>        from_year_f <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>        to_year_f <span class="op">=</span> <span class="cn">NULL</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu">g3_param_project_rwalk</span><span class="op">(</span></span>
 <span>        mean_f <span class="op">=</span> <span class="fu"><a href="params.html">g3_parameterized</a></span><span class="op">(</span><span class="st">"proj.rwalk.mean"</span>,</span>
@@ -123,7 +127,8 @@
 <span>            <span class="st">"proj.ar1.level"</span>,</span>
 <span>            value <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>            prepend_extra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">param_name</span><span class="op">)</span> <span class="op">)</span>,</span>
-<span>        lastx_f <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span>
+<span>        from_year_f <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>        to_year_f <span class="op">=</span> <span class="cn">NULL</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu">g3_param_project_logar1</span><span class="op">(</span></span>
 <span>        phi_f <span class="op">=</span> <span class="fu"><a href="params.html">g3_parameterized</a></span><span class="op">(</span></span>
@@ -138,7 +143,13 @@
 <span>            <span class="st">"proj.logar1.level"</span>,</span>
 <span>            value <span class="op">=</span> <span class="fl">1</span>, type <span class="op">=</span> <span class="st">"LOG"</span>,</span>
 <span>            prepend_extra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">param_name</span><span class="op">)</span> <span class="op">)</span>,</span>
-<span>        lastx_f <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span>
+<span>        from_year_f <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>        to_year_f <span class="op">=</span> <span class="cn">NULL</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="fu">g3_param_project_bootstrap</span><span class="op">(</span></span>
+<span>        from_year_f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">start_year</span><span class="op">)</span>,</span>
+<span>        to_year_f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="va">end_year</span><span class="op">)</span>,</span>
+<span>        block_size_f <span class="op">=</span> <span class="fl">1L</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="fu">g3_param_project</span><span class="op">(</span></span>
 <span>        <span class="va">param_name</span>,</span>
@@ -164,10 +175,19 @@
 <dd><p>(logspace) level (or offset) applied on top of ar1/logar1 regression.
     Defaults to parameter with name <code>(by_stock).(param_name).proj.(level|loglevel)</code>,</p></dd>
 
-  <dt id="arg-lastx-f">lastx_f<a class="anchor" aria-label="anchor" href="#arg-lastx-f"></a></dt>
-<dd><p>If <code>&gt; 0</code>, the setting of <var>level_f</var> / <var>loglevel_f</var> will be ignored,
-    and the mean of the last (x) non-projection values are used as (log)level.
-    Defaults to 0L, i.e. disabled.</p></dd>
+  <dt id="arg-from-year-f-to-year-f">from_year_f, to_year_f<a class="anchor" aria-label="anchor" href="#arg-from-year-f-to-year-f"></a></dt>
+<dd><p>First / last year (inclusive) of existing values to sample from (<code>g3_param_project_bootstrap</code>),
+    or to use the mean of (<code>g3_param_project_dlnorm</code>, <code>g3_param_project_dnorm</code>,
+    <code>g3_param_project_ar1</code>, <code>g3_param_project_logar1</code>).
+    Years from <var>to_year_f</var> onwards that are projected (e.g. removed by <var>retro_years</var>) are never used.
+    For <code>g3_param_project_bootstrap</code>, defaults to the whole non-projected model period.
+    For the others, defaults to <code>NULL</code>, i.e. use <var>lmean_f</var> / <var>mean_f</var> / <var>level_f</var> / <var>loglevel_f</var>.
+    If either is set, <var>lmean_f</var> / <var>mean_f</var> / <var>level_f</var> / <var>loglevel_f</var> is ignored,
+    and the other defaults to the start / end of the model period.</p></dd>
+
+  <dt id="arg-block-size-f">block_size_f<a class="anchor" aria-label="anchor" href="#arg-block-size-f"></a></dt>
+<dd><p>Number of consecutive years to copy for each sample, i.e. a block bootstrap.
+    Defaults to 1L, i.e. each year sampled independently.</p></dd>
 
   <dt id="arg-param-name">param_name<a class="anchor" aria-label="anchor" href="#arg-param-name"></a></dt>
 <dd><p>Character string used to name the parameters.</p></dd>
@@ -221,7 +241,8 @@
 <p>The functions compare / generate normally-distributed deviates around a mean, i.e:
     $$ V_t = \epsilon_{M - \frac{e^{2*\Sigma}}{2},\Sigma} $$
     $$ v = exp(V) $$</p><dl><dt>\(M\)</dt>
-<dd><p><var>lmean_f</var> / <code>(by_stock).(param_name).proj.lmean</code> parameter</p></dd>
+<dd><p><var>lmean_f</var> / <code>(by_stock).(param_name).proj.lmean</code> parameter,
+        or if <var>from_year_f</var> / <var>to_year_f</var> are set, \(log(mean(v_t))\) for existing values between them</p></dd>
 
       <dt>\(\Sigma\)</dt>
 <dd><p><var>lstddev_f</var> / <code>(by_stock).(param_name).proj.lstddev</code> parameter</p></dd>
@@ -233,7 +254,11 @@
 <dd><p>Output time series</p></dd>
 
 
-</dl><p></p><dl><dt>nll</dt>
+</dl><p>With <var>from_year_f</var> / <var>to_year_f</var> and a <var>lstddev_f</var> of 0 (i.e. \(\Sigma = -\infty\)),
+    projected values are a constant arithmetic mean of existing values.
+    The nll is then infinite, so this is only useful for projections, not fitting.
+    When computing nll, the mean also includes any projected values within <var>from_year_f</var> / <var>to_year_f</var>.</p>
+<p></p><dl><dt>nll</dt>
 <dd><p>Compare values against <code>dnorm(x, mean_f, stddev_f)</code></p></dd>
 
       <dt>proj</dt>
@@ -248,7 +273,8 @@
 <p>Returns a "nll" &amp; "project" <a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a> objects for use as <var>project_fs</var>.</p>
 <p>The functions compare / generate log-normal deviates around a mean, i.e:
     $$ v_t = \epsilon_{\mu,\sigma} $$</p><dl><dt>\(\mu\)</dt>
-<dd><p><var>mean_f</var> / <code>(by_stock).(param_name).proj.mean</code> parameter</p></dd>
+<dd><p><var>mean_f</var> / <code>(by_stock).(param_name).proj.mean</code> parameter,
+        or if <var>from_year_f</var> / <var>to_year_f</var> are set, the mean of existing values between them</p></dd>
 
       <dt>\(\sigma\)</dt>
 <dd><p><var>stddev_f</var> / <code>(by_stock).(param_name).proj.stddev</code> parameter</p></dd>
@@ -260,7 +286,11 @@
 <dd><p>Output time series</p></dd>
 
 
-</dl><p></p><dl><dt>nll</dt>
+</dl><p>With <var>from_year_f</var> / <var>to_year_f</var> and a <var>stddev_f</var> of 0,
+    projected values are a constant mean of existing values.
+    The nll is then infinite, so this is only useful for projections, not fitting.
+    When computing nll, the mean also includes any projected values within <var>from_year_f</var> / <var>to_year_f</var>.</p>
+<p></p><dl><dt>nll</dt>
 <dd><p>Compare values against <code>dnorm(x, mean_f, stddev_f)</code></p></dd>
 
       <dt>proj</dt>
@@ -305,7 +335,8 @@
 <dd><p><var>phi_f</var> / <code>(by_stock).(param_name).proj.phi</code> parameter</p></dd>
 
       <dt>\(\theta\)</dt>
-<dd><p><var>level_f</var> / <code>(by_stock).(param_name).proj.level</code> parameter</p></dd>
+<dd><p><var>level_f</var> / <code>(by_stock).(param_name).proj.level</code> parameter,
+        or if <var>from_year_f</var> / <var>to_year_f</var> are set, the mean of existing values between them</p></dd>
 
       <dt>\(\sigma\)</dt>
 <dd><p><var>stddev_f</var> / <code>(by_stock).(param_name).proj.stddev</code> parameter, if 0 1e-7 is used, so we don't return Inf</p></dd>
@@ -329,7 +360,8 @@
 <dd><p><var>phi_f</var> / <code>(by_stock).(param_name).proj.phi</code> parameter</p></dd>
 
       <dt>\(\Theta\)</dt>
-<dd><p><var>loglevel_f</var> / <code>(by_stock).(param_name).proj.loglevel</code> parameter</p></dd>
+<dd><p><var>loglevel_f</var> / <code>(by_stock).(param_name).proj.loglevel</code> parameter,
+        or if <var>from_year_f</var> / <var>to_year_f</var> are set, \(log(mean(v_t))\) for existing values between them</p></dd>
 
       <dt>\(\Sigma\)</dt>
 <dd><p><var>lstddev_f</var> / <code>(by_stock).(param_name).proj.lstddev</code> parameter, if 0 1e-7 is used, so we don't return Inf</p></dd>
@@ -339,6 +371,34 @@
 
       <dt>\(v\)</dt>
 <dd><p>Output time series</p></dd>
+
+
+</dl><p></p>
+</div>
+
+<p></p><div class="section">
+<h3 id="g-param-project-bootstrap">g3_param_project_bootstrap<a class="anchor" aria-label="anchor" href="#g-param-project-bootstrap"></a></h3>
+<p>Returns a "nll" &amp; "project" <a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a> objects for use as <var>project_fs</var>.</p>
+<p>Projected values are generated by resampling blocks of <var>block_size_f</var> consecutive years
+    from existing values between <var>from_year_f</var> and <var>to_year_f</var>, i.e:
+    $$ v_{t+j} = v_{s+j} \quad j = 0 .. b - 1 $$</p><dl><dt>\(s\)</dt>
+<dd><p>Random start year, chosen uniformly between <var>from_year_f</var> &amp; \(to_year_f - b + 1\) using <code><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></code></p></dd>
+
+      <dt>\(b\)</dt>
+<dd><p><var>block_size_f</var>, or the number of years between <var>from_year_f</var> &amp; <var>to_year_f</var> if smaller</p></dd>
+
+      <dt>\(v\)</dt>
+<dd><p>Output time series</p></dd>
+
+
+</dl><p>i.e. a moving block bootstrap, as <code>tseries::tsbootstrap(type = "block")</code>.
+    Blocks never extend past <var>to_year_f</var>, so years at either end of the pool are sampled less often.
+    Whole years are copied, so if <code>by_step = TRUE</code> the per-step values within a year are preserved.</p>
+<p></p><dl><dt>nll</dt>
+<dd><p>0, i.e. no likelihood</p></dd>
+
+      <dt>proj</dt>
+<dd><p>Generate new values by resampling existing values</p></dd>
 
 
 </dl><p></p>
@@ -502,6 +562,54 @@
 <span class="r-in"><span>    <span class="fu"><a href="init_val.html">g3_init_val</a></span><span class="op">(</span><span class="st">"M.proj.dlnorm.lstddev"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1e-2</span><span class="op">)</span><span class="op">)</span> <span class="op">)</span>, <span class="st">"proj_dlnorm_M__lvar"</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>g3_init_val('M.proj.dlnorm.lstddev') didn't match any parameters</span>
 <span class="r-plt img"><img src="param_project-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">### Recruitment projected by (block) bootstrap of estimated recruitment</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">st_fish</span> <span class="op">&lt;-</span> <span class="fu"><a href="stock.html">g3_stock</a></span><span class="op">(</span><span class="st">"fish"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="stock_age.html">g3s_age</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">rec_actions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="action_time.html">g3a_time</a></span><span class="op">(</span><span class="fl">1990</span>, <span class="fl">2009</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="action_renewal.html">g3a_initialconditions_normalparam</a></span><span class="op">(</span><span class="va">st_fish</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="action_age.html">g3a_age</a></span><span class="op">(</span><span class="va">st_fish</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="action_renewal.html">g3a_renewal_normalparam</a></span><span class="op">(</span><span class="va">st_fish</span>,</span></span>
+<span class="r-in"><span>        <span class="co"># Recruitment from per-year parameters, projected by resampling</span></span></span>
+<span class="r-in"><span>        <span class="co"># blocks of 3 consecutive years of recruitment from 1995 onwards</span></span></span>
+<span class="r-in"><span>        factor_f <span class="op">=</span> <span class="fu">g3_param_project</span><span class="op">(</span></span></span>
+<span class="r-in"><span>            <span class="st">"rec"</span>,</span></span>
+<span class="r-in"><span>            <span class="fu">g3_param_project_bootstrap</span><span class="op">(</span></span></span>
+<span class="r-in"><span>                from_year_f <span class="op">=</span> <span class="fl">1995</span>,</span></span>
+<span class="r-in"><span>                block_size_f <span class="op">=</span> <span class="fl">3L</span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span>            <span class="co"># Recruitment parameters are estimated directly, not as random effects</span></span></span>
+<span class="r-in"><span>            random <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>            scale <span class="op">=</span> <span class="st">"scalar"</span>,</span></span>
+<span class="r-in"><span>            by_step <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>            by_stock <span class="op">=</span> <span class="va">st_fish</span> <span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="cn">NULL</span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">model_fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="run_r.html">g3_to_r</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">rec_actions</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="action_report.html">g3a_report_history</a></span><span class="op">(</span><span class="va">rec_actions</span>, <span class="st">'proj_.*'</span>, out_prefix <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="cn">NULL</span> <span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The bootstrap adds no parameters of its own, just per-year recruitment &amp; scalar</span></span></span>
+<span class="r-in"><span><span class="co"># (sd is from g3a_renewal_normalparam)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^fish\\.rec\\."</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">model_fn</span>, <span class="st">'parameter_template'</span><span class="op">)</span><span class="op">)</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "fish.rec.1990"   "fish.rec.1991"   "fish.rec.1992"   "fish.rec.1993"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "fish.rec.1994"   "fish.rec.1995"   "fish.rec.1996"   "fish.rec.1997"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "fish.rec.1998"   "fish.rec.1999"   "fish.rec.2000"   "fish.rec.2001"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "fish.rec.2002"   "fish.rec.2003"   "fish.rec.2004"   "fish.rec.2005"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "fish.rec.2006"   "fish.rec.2007"   "fish.rec.2008"   "fish.rec.2009"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "fish.rec.scalar" "fish.rec.sd"    </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">model_fn</span>, <span class="st">'parameter_template'</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="init_val.html">g3_init_val</a></span><span class="op">(</span><span class="st">"fish.rec.#"</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1e3</span><span class="op">)</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="init_val.html">g3_init_val</a></span><span class="op">(</span><span class="st">"fish.rec.scalar"</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="init_val.html">g3_init_val</a></span><span class="op">(</span><span class="st">"project_years"</span>, <span class="fl">30</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/identity.html" class="external-link">identity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">params</span></span></span>
+<span class="r-in"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="fu">model_fn</span><span class="op">(</span><span class="va">params</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Recruitment for 1990..2009 from parameters, 2010..2039 resampled from 1995..2009</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">1990</span><span class="op">:</span><span class="fl">2039</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">r</span><span class="op">$</span><span class="va">proj_bootstrap_fish_rec__lvar</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fl">2009.5</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="param_project-4.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>
@@ -516,7 +624,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

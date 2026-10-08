@@ -82,6 +82,20 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.15-1-999" id="gadget3-015-1-999">gadget3 0.15-1-999:<a class="anchor" aria-label="anchor" href="#gadget3-015-1-999"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-0-15-1-999">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-15-1-999"></a></h3>
+<ul><li>g3_to_r(): Convert logarithmic (type = “LOG”) parameters to log space when given a list of parameters, as with a data.frame</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-0-15-1-999">New features<a class="anchor" aria-label="anchor" href="#new-features-0-15-1-999"></a></h3>
+<ul><li>g3_param_project_bootstrap(): Project by (block) bootstrap resampling of existing values</li>
+<li>g3_param_project_dlnorm() / g3_param_project_dnorm() / g3_param_project_ar1() / g3_param_project_logar1(): from_year_f / to_year_f to use the mean of existing values instead of lmean_f / mean_f / level_f / loglevel_f</li>
+</ul></div>
+<div class="section level3">
+<h3 id="breaking-changes-0-15-1-999">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-15-1-999"></a></h3>
+<ul><li>g3_param_project_ar1() / g3_param_project_logar1(): lastx_f removed, use from_year_f / to_year_f instead. lastx_f’s nll used a different level in R &amp; TMB, and included projected values. For g3_param_project_logar1(), the level is now the log of the arithmetic mean, not the mean of logs, as with g3_param_project_dlnorm()</li>
+<li>g3_param_project_ar1(): Negative levels are no longer clamped to 0 when calculating nll</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.15-0" id="gadget3-015-0">gadget3 0.15-0:<a class="anchor" aria-label="anchor" href="#gadget3-015-0"></a></h2>
@@ -285,7 +299,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>
